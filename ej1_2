@@ -1,0 +1,32 @@
+
+#include <Arduino.h>  // Incluir la librería de Arduino
+
+// Definir el pin donde está conectado el LED
+int led = 2;  // GPIO2 en la mayoría de las placas ESP32
+
+// La función setup se ejecuta una vez al inicio
+void setup() {
+  // Inicializar el pin como salida
+  pinMode(led, OUTPUT);
+
+  // Inicializar el puerto serie para la comunicación con la PC
+  Serial.begin(115200);  // La velocidad de transmisión en baudios (115200 es una opción común)
+
+  // Esperar un poco para asegurarse de que el puerto serie esté listo
+  while (!Serial) {
+    ;  // Esperar por la conexión serie
+  }
+}
+
+// La función loop se ejecuta en un ciclo continuo
+void loop() {
+  // Encender el LED (HIGH es el nivel de voltaje)
+  digitalWrite(led, HIGH);
+  Serial.println("ON");  // Enviar mensaje "ON" por el puerto serie
+  delay(1000);  // Esperar 1 segundo
+
+  // Apagar el LED (LOW es el nivel de voltaje)
+  digitalWrite(led, LOW);
+  Serial.println("OFF");  // Enviar mensaje "OFF" por el puerto serie
+  delay(1000);  // Esperar 1 segundo
+}
